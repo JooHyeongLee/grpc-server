@@ -1,0 +1,28 @@
+// syntax를 지정하지 않으면 기본 버전인 proto2로 처리된다.
+syntax = "proto3";
+
+package grpcapi;
+option go_package = "golang-grpc-example/grpcapi"; // *.pb.go 파일이 생성될 위치
+
+service GreeterService {
+  rpc SayHello(SayHelloRequest) returns (SayHelloResponse);
+  rpc SayGoodbye(SayGoodbyeRequest) returns (SayGoodbyeResponse);
+}
+
+message SayHelloRequest {
+  string request_message = 1;
+}
+
+message SayGoodbyeRequest {
+  string request_message = 1;
+}
+
+message SayHelloResponse {
+  int32 response_code = 1;
+  string response_message = 2;
+}
+
+message SayGoodbyeResponse {
+  int32 response_code = 1;
+  string response_message = 2;
+}

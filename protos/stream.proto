@@ -1,0 +1,31 @@
+// syntax를 지정하지 않으면 기본 버전인 proto2로 처리된다.
+syntax = "proto3";
+
+package grpcapi;
+option go_package = "golang-grpc-example/grpcapi"; // *.pb.go 파일이 생성될 위치
+
+service StreamingService {
+  // Streaming Server
+  rpc GreetManyTimes(Request) returns (stream StreamResponse) {}
+
+  // Streaming Client
+  rpc LongGreet(stream StreamRequest) returns (Response) {}
+}
+
+message Request {
+  string request_message = 1;
+}
+
+message Response {
+  int32 response_code = 1;
+  string response_message = 2;
+}
+
+message StreamRequest {
+  string request_message = 1;
+}
+
+message StreamResponse {
+  int32 response_code = 1;
+  string response_message = 2;
+}
